@@ -1,3 +1,6 @@
 const std = @import("std");
+const window = @import("window.zig");
 
-pub fn entry() !void {}
+pub fn run() !void {
+    window.init();
+}

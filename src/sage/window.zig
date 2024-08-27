@@ -1,7 +1,7 @@
 const std = @import("std");
 const rl = @import("raylib");
 
-pub fn main() anyerror!void {
+pub fn init() anyerror!void {
     const screenWidth = 800;
     const screenHeight = 450;
 

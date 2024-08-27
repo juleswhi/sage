@@ -24,7 +24,7 @@ pub fn build(b: *std.Build) void {
     b.installArtifact(engine_lib);
 
     const exe = b.addExecutable(.{
-        .name = "",
+        .name = "game",
         .root_source_file = b.path("src/game/main.zig"),
         .target = target,
         .optimize = optimize,
