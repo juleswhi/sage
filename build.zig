@@ -21,14 +21,12 @@ pub fn build(b: *std.Build) void {
     const raylib_artifact = raylib_dep.artifact("raylib"); // raylib C library
 
     const sage = b.addModule("sage", .{
-        .root_source_file = .{ .src_path = .{ .sub_path = "sage/src/core.zig", .owner = b } }
+        .root_source_file = .{ .src_path = .{ .sub_path = "sage/core.zig", .owner = b } }
     });
     exe.root_module.addImport("sage", sage);
 
 
     exe.linkLibrary(raylib_artifact);
-    exe.root_module.addImport("raylib", raylib);
-    exe.root_module.addImport("raygui", raygui);
     sage.addImport("raylib", raylib);
     sage.addImport("raygui", raygui);
 
