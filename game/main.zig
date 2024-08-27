@@ -2,13 +2,13 @@ const std = @import("std");
 const sage = @import("sage");
 
 pub fn main() !void {
-    const application = sage.app {
+    var application = sage.app {
         .entry = &entry,
-        .windowed = false,
+        .callstack = null,
+        .window = null,
     };
 
     try application.run();
-    sage.log_info("Running");
 }
 
 fn entry() void {
