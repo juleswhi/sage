@@ -1,10 +1,5 @@
-const std = @import("std");
-const window = @import("window.zig");
-
-pub const Game = struct {
-    window: bool,
-};
-
-pub fn run() !void {
-    try window.init();
-}
+pub const app = @import("app.zig").app;
+pub const log_debug = @import("log.zig").log_debug;
+pub const log_info = @import("log.zig").log_info;
+pub const log_err = @import("log.zig").log_err;
+pub const log_fatal = @import("log.zig").log_fatal;
