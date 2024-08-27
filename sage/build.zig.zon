@@ -1,5 +1,5 @@
 .{
-    .name = "engine",
+    .name = "sage",
 
     .version = "0.0.1",
 
@@ -14,9 +14,6 @@
     .paths = .{
         "build.zig",
         "build.zig.zon",
-        "sage",
-        "game",
-        "LICENSE",
-        "README.md",
+        "src",
     },
 }
