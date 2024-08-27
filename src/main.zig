@@ -10,7 +10,7 @@ pub fn main() anyerror!void {
 
     rl.setTargetFPS(60);
 
-    while(!rl.windowShouldClose()) {
+    while (!rl.windowShouldClose()) {
         rl.beginDrawing();
         defer rl.endDrawing();
 
