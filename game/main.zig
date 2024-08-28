@@ -1,5 +1,6 @@
 const std = @import("std");
 const sage = @import("sage");
+const log = @import("sage").log;
 const ev = @import("sage").event;
 
 pub fn main() !void {
@@ -10,7 +11,13 @@ pub fn main() !void {
 
     const alloc = std.heap.page_allocator;
 
-    _ = try ev.new(ev.event_type.WindowClose, "WINDOW_CLOSE", &alloc);
+    var e = try ev.new(ev.event_type.AppTick, "KEY_PRESSED", &alloc);
+
+    if(e.is_cat(sage.event.event_core.event_cat.application)) {
+        log.debug("True");
+    } else {
+        log.debug("False");
+    }
 
     try application.run();
 }
