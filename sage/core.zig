@@ -1,5 +1,9 @@
-pub const app = @import("app.zig").app;
-pub const log_debug = @import("log.zig").log_debug;
-pub const log_info = @import("log.zig").log_info;
-pub const log_err = @import("log.zig").log_err;
-pub const log_fatal = @import("log.zig").log_fatal;
+pub const app = @import("app/app.zig").app;
+
+pub const window = @import("window/window.zig").window;
+
+pub const engine = @import("engine/engine_incl.zig");
+
+pub const log = @import("log.zig");
+
+pub const event = @import("event/event_incl.zig");

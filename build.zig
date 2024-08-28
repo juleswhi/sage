@@ -24,9 +24,10 @@ pub fn build(b: *std.Build) void {
         .root_source_file = .{ .src_path = .{ .sub_path = "sage/core.zig", .owner = b } }
     });
     exe.root_module.addImport("sage", sage);
-
+    sage.addImport("sage", sage);
 
     exe.linkLibrary(raylib_artifact);
+    sage.linkLibrary(raylib_artifact);
     sage.addImport("raylib", raylib);
     sage.addImport("raygui", raygui);
 
