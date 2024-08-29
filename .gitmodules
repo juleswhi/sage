@@ -1,0 +1,3 @@
+[submodule "vulkan/vulkan-zig"]
+	path = vulkan/vulkan-zig
+	url = git@github.com:Snektron/vulkan-zig.git

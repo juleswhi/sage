@@ -11,13 +11,7 @@ pub fn main() !void {
 
     const alloc = std.heap.page_allocator;
 
-    var e = try ev.new(ev.event_type.AppTick, "KEY_PRESSED", &alloc);
-
-    if(e.is_cat(sage.event.event_core.event_cat.application)) {
-        log.debug("True");
-    } else {
-        log.debug("False");
-    }
+    _ = try ev.new(ev.event_type.AppTick, "KEY_PRESSED", &alloc);
 
     try application.run();
 }

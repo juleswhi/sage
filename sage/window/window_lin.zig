@@ -1,11 +1,11 @@
 const std = @import("std");
 const rl = @import("raylib");
 
-pub const window = struct {
+pub const window_lin = struct {
     x: i32,
     y: i32,
 
-    pub fn init(self: *const window) anyerror!void {
+    pub fn init(self: *const window_lin) anyerror!void {
         const screenWidth = if(self.x == undefined) 800 else self.x;
         const screenHeight = if(self.y == undefined) 800 else self.y;
 
