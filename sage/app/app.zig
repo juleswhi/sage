@@ -9,11 +9,6 @@ pub const app = struct {
         log.debug("starting entry method");
         self.entry();
 
-        if (self.window) |w| {
-            try w.init();
-        } else {
-            self.window = &window{ .x = 800, .y = 400 };
-            try self.window.?.init();
-        }
+        // try self.window;
     }
 };
