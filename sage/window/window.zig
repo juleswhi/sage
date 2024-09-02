@@ -1,10 +1,7 @@
 const std = @import("std");
 const rl = @import("raylib");
 const event = @import("sage").event.event;
-
-const c = @cImport({
-    @cInclude("SDL2/SDL.h");
-});
+const glfw = @import("mach-glfw");
 
 pub const window = struct {
     title: []const u8,
@@ -13,32 +10,31 @@ pub const window = struct {
     height: u32,
 
     set_event_callback: ?fn (callback: fn (e: *const event) void) void,
-
-    pub fn init() !void {
-        defer c.SDL_Quit();
-        const screen = c.SDL_CreateWindow("Sage Engine", c.SDL_WINDOWPOS_UNDEFINED, c.SDL_WINDOWPOS_UNDEFINED, 400, 140, c.SDL_WINDOW_OPENGL).?;
-        defer c.SDL_DestroyWindow(screen);
-        const renderer = c.SDL_CreateRenderer(screen, -1, 0).?;
-        defer c.SDL_DestroyRenderer(renderer);
-
-        var quit = false;
-
-        while (!quit) {
-            var e: c.SDL_Event = undefined;
-            while (c.SDL_PollEvent(&e) != 0) {
-                switch (e.type) {
-                    c.SDL_QUIT => {
-                        quit = true;
-                    },
-                    else => {},
-                }
-            }
-            _ = c.SDL_RenderClear(renderer);
-            c.SDL_RenderPresent(renderer);
-
-            c.SDL_RenderPresent(renderer);
-
-            c.SDL_Delay(17);
-        }
-    }
 };
+
+pub fn init_glfw() *const window {
+    glfw.setErrorCallback(errorCallback);
+    if (!glfw.init(.{})) {
+        std.log.err("failed to initialize GLFW: {?s}", .{glfw.getErrorString()});
+        std.process.exit(1);
+    }
+    defer glfw.terminate();
+
+    // Create our window
+    const w = glfw.Window.create(400, 400, "Sage Engine", null, null, .{}) orelse {
+        std.log.err("failed to create GLFW window: {?s}", .{glfw.getErrorString()});
+        std.process.exit(1);
+    };
+
+    defer w.destroy();
+
+    // Wait for the user to close the window.
+    while (!w.shouldClose()) {
+        w.swapBuffers();
+        glfw.pollEvents();
+    }
+}
+
+fn errorCallback(error_code: glfw.ErrorCode, description: [:0]const u8) void {
+    std.log.err("glfw: {}: {s}\n", .{ error_code, description });
+}

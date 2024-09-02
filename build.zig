@@ -11,6 +11,18 @@ pub fn build(b: *std.Build) void {
         .optimize = optimize,
     });
 
+    const gl_bindings = @import("zigglgen").generateBindingsModule(b, .{
+        .api = .gl,
+        .version = .@"4.1",
+        .profile = .core,
+        .extensions = &.{ .ARB_clip_control, .NV_scissor_exclusive },
+    });
+
+    const glfw_dep = b.dependency("mach-glfw", .{
+        .target = target,
+        .optimize = optimize,
+    });
+
     const sage = b.addModule("sage", .{
         .root_source_file = .{
             .src_path = .{
@@ -20,12 +32,13 @@ pub fn build(b: *std.Build) void {
         },
     });
 
-    exe.linkSystemLibrary("SDL2");
-    exe.linkLibC();
-
     exe.root_module.addImport("sage", sage);
+    exe.root_module.addImport("gl", gl_bindings);
+    exe.root_module.addImport("mach-glfw", glfw_dep.module("mach-glfw"));
 
     sage.addImport("sage", sage);
+    sage.addImport("gl", gl_bindings);
+    sage.addImport("mach-glfw", glfw_dep.module("mach-glfw"));
 
     const run_cmd = b.addRunArtifact(exe);
 

@@ -9,6 +9,14 @@
             .url = "https://github.com/Not-Nik/raylib-zig/archive/devel.tar.gz",
             .hash = "1220df9aa89d657f5dca24ab0ac3d187f7a992a4d27461fd9e76e934bf0670ca9a90",
         },
+        .@"mach-glfw" = .{
+            .url = "https://pkg.machengine.org/mach-glfw/fb4ae48540454270ab969c8c645bbc6eff3c2dfb.tar.gz",
+            .hash = "12201ae68707aefe54ffb9d8c64721d4a2ac36186f8bd390e4f670033fec6737664a",
+        },
+        .zigglgen = .{
+            .url = "https://github.com/castholm/zigglgen/releases/download/v0.2.3/zigglgen.tar.gz",
+            .hash = "1220f4188a5e1bdbb15fd50e9ea322c0721384eeba9bc077e4179b0b0eeaa7fe4ad9",
+        },
     },
     .paths = .{
         "build.zig",
