@@ -9,10 +9,10 @@ pub const window = struct {
     width: u32,
     height: u32,
 
-    set_event_callback: ?fn (callback: fn (e: *const event) void) void,
+    set_event_callback: ?*fn (callback: fn (e: *const event) void) void,
 };
 
-pub fn init_glfw() *const window {
+pub fn init_glfw() void {
     glfw.setErrorCallback(errorCallback);
     if (!glfw.init(.{})) {
         std.log.err("failed to initialize GLFW: {?s}", .{glfw.getErrorString()});
