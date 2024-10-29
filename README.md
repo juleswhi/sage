@@ -1,5 +1,7 @@
 # Sage
 
+_sage is currently in active developemnt, and is not in a usable state_
+
 ## Todo
 
 - UI
